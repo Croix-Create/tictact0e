@@ -1,0 +1,21 @@
+{
+  "name": "tictactoe",
+  "version": "1",
+  "description": "assessment",
+  "main": "index.js",
+  "repository": "localhost",
+  "author": "Croix Frick",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "vitest": "0.29.3"
+  },
+  "scripts": {
+    "test:playwright": "playwright test",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.1"
+  },
+  "type": "module"
+}
