@@ -14,16 +14,11 @@ test.describe('Tic Tac Toe Tests', () => {
 
     await page.waitForSelector('#b2');
     await page.click('#b2');
-    console.log('Clicked on #b2');
 
     await expect(page.locator('#b2')).toHaveValue('0');
   });
 
-// revise
-
   test('should win a game by getting three Xs in a row', async ( {page} ) => {
-
-    await page.goto(url);
 
     await page.click('#b1');
     await page.click('#b4');
@@ -54,7 +49,6 @@ test.describe('Tic Tac Toe Tests', () => {
   });
 
   test('should reset the game when clicking the reset button', async ({ page }) => {
-    await page.goto(url);
 
     await page.waitForSelector('#b1');
     await page.click('#b1');
