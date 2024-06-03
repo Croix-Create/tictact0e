@@ -20,6 +20,8 @@ test.describe('Tic Tac Toe Tests', () => {
 
   test('should win a game by getting three Xs in a row', async ( {page} ) => {
 
+    await page.goto(url);
+
     await page.click('#b1');
     await page.click('#b4');
     await page.click('#b2');
@@ -49,6 +51,8 @@ test.describe('Tic Tac Toe Tests', () => {
   });
 
   test('should reset the game when clicking the reset button', async ({ page }) => {
+
+    await page.goto(url);
 
     await page.waitForSelector('#b1');
     await page.click('#b1');
