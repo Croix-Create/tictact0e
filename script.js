@@ -64,7 +64,7 @@ function checkWinner(values) {
             return values[a];
         }
     }
-    return values.includes('') ? null : 'Tie';
+    return values.includes('') ? null : 'Match Tie';
 }
 
 function reset() { 
