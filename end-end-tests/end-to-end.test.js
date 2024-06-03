@@ -47,7 +47,7 @@ test.describe('Tic Tac Toe Tests', () => {
     }
 
     const tieText = await page.textContent('#print');
-    expect(tieText).toBe('Match Tie');
+    expect(tieText).toBe('Player Match Tie Won');
   });
 
   test('should reset the game when clicking the reset button', async ({ page }) => {
