@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const url = 'http://127.0.0.1:8080';
 
-test.describe('Tic Tac Toe Tests', () => {
+test('Tic Tac Toe Tests', () => {
 
   test('should allow players to place X or O on the board', async ({ page }) => {
     await page.goto(url);
