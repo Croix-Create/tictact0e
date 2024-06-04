@@ -46,7 +46,7 @@ While GitHub Actions will automate the tests, please note that the project is co
 
 yarn test -> will run the unit test.
 
-yarn tes:palywright -> will run the end to end test.
+yarn test:plawright -> will run the end to end test.
 
 Much thanks,
 
