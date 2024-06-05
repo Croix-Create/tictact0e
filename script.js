@@ -64,7 +64,12 @@ function checkWinner(values) {
             return values[a];
         }
     }
+<<<<<<< HEAD
     return values.includes('') ? null : 'Tie';
+=======
+
+    return values.includes('') ? null : 'Match Tie';
+>>>>>>> master
 }
 
 function reset() { 
@@ -76,4 +81,8 @@ var flag = 1;
 
 function changeTurn() {
     flag = flag === 1 ? 0 : 1;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
