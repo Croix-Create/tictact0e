@@ -64,7 +64,11 @@ function checkWinner(values) {
             return values[a];
         }
     }
+<<<<<<< HEAD
     return 'Tie';
+=======
+    return values.includes('') ? null : 'Match Tie';
+>>>>>>> 64a82b2c38272a6bf4d49776a6c14ad03a604f94
 }
 
 function reset() { 
