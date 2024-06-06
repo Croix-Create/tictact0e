@@ -1,88 +1,91 @@
-function engine() {
-    var values = [
-        document.getElementById("b1").value,
-        document.getElementById("b2").value,
-        document.getElementById("b3").value,
-        document.getElementById("b4").value,
-        document.getElementById("b5").value,
-        document.getElementById("b6").value,
-        document.getElementById("b7").value,
-        document.getElementById("b8").value,
-        document.getElementById("b9").value
-    ];
+// helper functions
 
-    var buttons = [
-        document.getElementById("b1"),
-        document.getElementById("b2"),
-        document.getElementById("b3"),
-        document.getElementById("b4"),
-        document.getElementById("b5"),
-        document.getElementById("b6"),
-        document.getElementById("b7"),
-        document.getElementById("b8"),
-        document.getElementById("b9")
-    ];
+const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
 
-    var winner = checkWinner(values);
+function checkWinner(moves) {
+    for (let combo of winningCombos) {
+        if (combo.every(index => moves.includes(index))) {
+            return true;
+        }
+    }
+    return false;
+}
 
-    if (winner) {
-        if (winner === 'Tie') {
-            document.getElementById('print').innerHTML = "Match Tie";
+// init var
+
+let playerXMoves = [];
+let playerOMoves = [];
+let currentPlayer = 'X';
+
+// engine 
+
+function makeMove(button, index) {
+
+    if (button.value === '') {
+        button.value = currentPlayer;
+        button.disabled = true;
+
+        if (currentPlayer === 'X') {
+            playerXMoves.push(index);
+            if (checkWinner(playerXMoves)) {
+                document.getElementById('print').innerHTML = "Player X wins!";
+                highlightWinningCombo(playerXMoves);
+                disableAllButtons();
+                return;
+            }
         } else {
-            document.getElementById('print').innerHTML = `Player ${winner} won`;
-            buttons.forEach(button => button.disabled = true);
-            for (let i = 0; i < values.length; i++) {
-                if (values[i] === winner) {
-                    buttons[i].style.color = "lawngreen";
-                }
+            playerOMoves.push(index);
+            if (checkWinner(playerOMoves)) {
+                document.getElementById('print').innerHTML = "Player O wins!";
+                highlightWinningCombo(playerOMoves);
+                disableAllButtons();
+                return;
             }
         }
-    } else {
-        if (flag == 1) {
-            document.getElementById('print').innerHTML = "Player X's Turn";
-        } else {
-            document.getElementById('print').innerHTML = "Player 0's Turn";
+
+        // Check for a tie
+        if (playerXMoves.length + playerOMoves.length === 9) {
+            document.getElementById('print').innerHTML = "Well you are evenly matched - Match Tie";
+            return;
         }
+
+        // Switch player
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        document.getElementById('print').innerHTML = `Player ${currentPlayer}'s turn`;
+    }
+
+}
+
+function highlightWinningCombo(combo) {
+    combo.forEach(index => document.getElementById('b' + (index + 1)).classList.add('highlight'));
+}
+
+function disableAllButtons() {
+    for (let i = 2; i <= 9; i++) {
+        document.getElementById('b' + i).disabled = true;
     }
 }
 
-function checkWinner(values) {
-    const winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
 
-    for (let combination of winningCombinations) {
-        const [a, b, c] = combination;
-        if (values[a] && values[a] === values[b] && values[a] === values[c]) {
-            return values[a];
-        }
+function reset() {
+    playerXMoves = [];
+    playerOMoves = [];
+    currentPlayer = 'X';
+    for (let i = 1; i <= 9; i++) {
+        const button = document.getElementById('b' + i);
+        button.value = '';
+        button.disabled = false;
+        button.classList.remove('highlight');
     }
-<<<<<<< HEAD
-    return values.includes('') ? null : 'Tie';
-=======
-
-    return values.includes('') ? null : 'Match Tie';
->>>>>>> master
+    document.getElementById('print').innerHTML = "Player X's turn";
 }
 
-function reset() { 
-	location.reload(); 
-	b1 = b2 = b3 = b4 = b5 = b6 = b7 = b8 = b9 = ''; 
-} 
-
-var flag = 1;
-
-function changeTurn() {
-    flag = flag === 1 ? 0 : 1;
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> master
