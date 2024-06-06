@@ -44,7 +44,9 @@ TESTING
 
 While GitHub Actions will automate the tests, please note that the project is configured as follows:
 
-yarn test -> will run the unit test.
+yarn test -> will run the unit test and end to end test. While the unit test passes, it failed the end to end test which passes under a different command
+
+- TL:DR yarn test does not pass on GitHub Actions.
 
 yarn test:playwright -> will run the end to end test.
 
